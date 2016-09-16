@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel=stylesheet type=text/css media="(min-width: 640px)" href="{{ url_for('static', filename='survey.css') }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel=stylesheet type=text/css media="(max-width: 640px)" href="{{ url_for('static', filename='survey_640.css') }}">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<link rel="icon" href="{{ url_for('static', filename='images/thumbnail.png') }}">
+	<title>OpenDoorData</title>
+</head>
+<body>
+<div id="full_screen_header">
+		<div id="wrapper">
+			<!--NAVBAR STUFF GOES HERE-->
+
+			<header id="large_screen_header">
+				<div class="wrapper">
+					<img id="header_image" src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+					<h3 id="header_title">Open Door Data</h3>
+				</div>
+			</header>
+			<nav>
+
+				<ul>
+					<div class="wrapper">
+						<li><a href="/">Home</a></li>
+						<li><a>Dashboard</a>
+							<ul>
+								<li><a href="/dashboard/general">General Information</a></li>
+								<li><a href="/building">Building Information</a></li>
+								<li><a href="/room">Room Information</a></li>
+								<li><a href="/module">Module Information</a></li>
+							</ul>
+						</li>
+						<li><a href="/api">API</a>
+						</li>
+						<li><a href="/survey">Survey</a></li>
+					</div>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- MOBILE NAVBAR -->
+	<div id="navbar">
+		<div id="navContent">
+			<div id="navbar_title">
+				<img src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+				<h4 id="product_name">UCD Occupancy Checker</h4>
+			</div>
+
+			<ul id="navList">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dashboard/general">General Information</a></li>
+				<li><a href="/building">Building Information</a></li>
+				<li><a href="/room">Room Information</a></li>
+				<li><a href="/module">Module Information</a></li>
+				<li><a href="/api">API</a></li>
+				<li><a href="/survey">Survey</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div id="mobile_header">
+		<div onclick="showNavBar()" id="navbar_symbol"><h1>≡</h1></div>
+		<h4 id="page_name">Home</h4>
+	</div>
+	<div id = "main_page">
+    <h2 style='text-align:center'>Occupancy Survey Submission</h2>
+	<p>Please select the three options below to submit occupancy information for your classroom</p>
+
+<div class="survey_form">
+<form action="">
+	<label for="location">Room Location</label>
+  <select name="location" id="rooms">
+  </select>
+	<label for="module">Module</label>
+  <select name="module" id="modules">
+  </select>
+	<label for="time">Time</label>
+  <select name="time">
+    <option value=""></option>
+    <option value="09:00:00">9am-10am</option>
+    <option value="10:00:00">10am-11am</option>
+    <option value="11:00:00">11am-12pm</option>
+	<option value="12:00:00">12pm-1pm</option>
+    <option value="13:00:00">1pm-2pm</option>
+	<option value="14:00:00">2pm-3pm</option>
+    <option value="15:00:00">3pm-4pm</option>
+	<option value="16:00:00">4pm-5pm</option>
+  </select>
+	<label for="occupancy">Occupancy Level</label>
+  <select name="occupancy">
+    <option value=""></option>
+    <option value=0.0>0%</option>
+    <option value=0.25>25%</option>
+    <option value=0.50>50%</option>
+	<option value=0.75>75%</option>
+    <option value=1.0>100%</option>
+  </select>
+  <br><br>
+  <input type="submit">
+</form>
+</div>
+</div>
+	<script type = "text/javascript">
+		var rooms = document.getElementById("rooms");
+		options = "<option value=''></option>"
+		{% for room in rooms %}
+		options +="<option value="+"'"+'{{ room.building }}'+","+'{{ room.room_num }}'+"'"+ ">"+'{{ room.building }}'+" - "+'{{ room.room_num }}'+"</option>";
+		{% endfor %}
+		rooms.innerHTML = options;
+		 
+		var rooms = document.getElementById("modules");
+		options2 = "<option value=''></option>"
+		{% for module in modules %}
+		options2 +="<option value="+"'"+'{{ module.module_code }}'+"'"+ ">"+'{{ module.module_code }}'+"</option>";
+		{% endfor %}
+		modules.innerHTML = options2;
+	</script>
+	
+	<script>
+		$(document).ready(function(){
+		$("form").submit(function(event){
+			event.preventDefault();
+			var loc = $('select[name="location"]').val();
+			var time = $('select[name="time"]').val();
+			var module = $('select[name="module"]').val();
+			var occupancy = $('select[name="occupancy"]').val();
+			var building= loc.substr(0, loc.indexOf(',')); 
+			var room_id= loc.substr(loc.indexOf(',')+1); 
+			var d = new Date();
+			var date = d.getFullYear() + "-" + (d.getMonth()+1)+"-"+ d.getDate() + " " + time;
+			var epoch = (Date.parse(date)/1000);
+			var user = '{{ user }}';
+
+			var submission = '{"room_id":' + room_id+
+				',"module_code":"'+module+
+				'", "event_time":'+epoch+
+				',"occupancy":'+occupancy+
+				',"time":"'+date+
+				'","reporter":"'+user+
+				'","building":"'+building+'"}';
+			console.log(submission);
+
+			$.ajax ({ 
+				url : '/api/survey/' ,
+				contentType: 'application/json',
+				data : submission,
+				type: 'POST',
+				processData: false,
+				success : function(){ 
+				alert("Thank you for your submission");
+				$('form')[0].reset();
+				},
+				error: function () {
+        		alert("Error: Your entry could not be submitted")
+				}
+			});	
+		});
+		});	
+	</script>
+	
+</body>
+</html>

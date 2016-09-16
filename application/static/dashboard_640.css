@@ -1,0 +1,391 @@
+
+*{
+	padding: 0;
+	margin: 0;
+	font-family: "Open Sans";
+}
+
+
+
+html, body{
+	background-color: white;
+	height: 100%;
+	width: 100%;
+}
+
+
+
+/*Used to make sure that screen elements don't extent out past the max width*/
+#wrapper{
+	width: 100%;
+	height: 100%;
+	background-color: #f2f2f2;
+}
+
+#full_screen_header{
+	display: none;
+}
+
+#mobile_header{
+	width: 100%;
+	height: 50px;
+	margin-bottom: 5px;
+	text-align: center;
+	background-color: #222222;;
+	color: white;
+}
+
+#page_name{
+	position: relative;
+	transition: opacity 0.2s;
+	display: inline-block;
+	top: 10px;
+	overflow: hidden;
+}
+
+/*All CSS classes related to the header go here*/
+#navbar_title{
+	background-color: #222222;
+	height: 50px;
+	width: 100%;
+	z-index: 10;
+}
+
+#navbar_symbol{
+	z-index: 4;
+	position: absolute;
+	width: 20px;
+	margin-left: 10px;
+	transition: margin-left 0.2s;
+}
+
+#navbar_title img{
+	height: 30px;
+	margin-top:10px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	left: 5px;
+	margin-right: 10px;
+}
+
+#product_name{
+	font-size: 13px;
+	margin-top:10px;
+	opacity: 0;
+	transition: opacity 1s;
+	color: white;
+	vertical-align: middle;
+	display: inline-block;
+	font-family: Arial;
+}
+
+/*All CSS relating to the navigation bar*/
+
+#navbar{
+	position: fixed;
+	width: 0;
+	transition: width 0.2s;
+	overflow: hidden;
+    top: 0px;
+    left: 0px;
+	background-color: #0099cc;
+	height: 100%;
+	z-index: 10;
+}
+
+.navbar_section_title{
+	font-weight: normal;
+	font-size: 15px;
+}
+
+#navbar_title_main{
+	display: block;
+	width: 180px;
+	margin: auto;
+	border-bottom: 1px solid white;
+}
+
+#navContent{
+	color: white;
+}
+
+#navList{
+	font-size: 14px;
+	font-weight: 600;
+	list-style-type: none;
+}
+
+#navList li{
+}
+
+#navList li:hover{
+	background-color: #222222;
+	box-shadow: 5px 0 0 #0099cc inset;
+} 
+
+#navList a{
+	text-decoration: none;
+	color: white;
+	display: block;
+	position: relative;
+	padding: 10px;
+}
+
+
+/*Styling to contain the right hand side of the page*/
+#main_page{
+	margin: 0;
+	}
+
+.dashboard_display{
+	margin: 0;
+}
+
+/*==========================DBHOME.HTML=====================*/
+
+.text_content{
+	padding: 10px;
+}
+
+/*=========================ROOM.HTML======================*/
+
+/*Stuff relating to submit form at the top*/
+
+.option_selector{
+	background-color: white;
+	border-radius: 3px;
+	height: 80px;
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+#building_selector{
+	position: relative;
+	top: 8px;
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+#room_selector{
+	position: relative;
+	top: 8px;
+}
+
+#submit_button{
+	position: relative;
+	top: 8px;
+}
+
+
+/*Chart div and chart styling*/
+.outer{
+	padding: 5px;
+	background-color: white;
+}
+.left_column{
+    background-color: white;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.right_column{
+    width: 100%;
+    display: block;
+    height: auto;
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+
+.page_title{
+    background-color: white;
+    border-radius: 3px;
+    padding: 5px 5px 10px 5px;
+    text-align: left;
+}
+
+.page_title h1{
+	border-bottom: solid 1px black;
+}
+/*Chart Styling for room.html*/
+.chartArea{
+	background-color: white;
+	width: 95%;
+	margin-top: 10px;
+	height: 150px;
+	display: block;
+}
+
+.percentage_display{
+	width: 100%;
+	margin: 0;
+	text-align: center;
+}
+
+
+.full_column{
+	background-color: white;
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.full_column_chart{
+	height: 300px;
+	background-color: white;
+}
+
+.full_column_chart_tall{
+	height: 500px;
+	background-color: white;
+}
+
+.chart_title{
+	background-color: #0099CC;
+	text-align: center;
+	color: white;
+	margin-bottom: 2px;
+	font-weight: 200;
+}
+
+#date_selector{
+}
+
+.date_picker{
+	position: relative;
+	top: 10px;
+}
+/*===========================BUILDING.HTML=========================*/
+
+#googleMap{
+	height: 300px;
+}
+
+.map_section{
+	margin-bottom: 5px;
+	padding: 10px;
+	background-color: white;
+}
+
+.building_list{
+	background-color: white;
+	list-style-type: none;
+}
+
+.building_list li{
+	padding: 5px;
+	transition: background-color 0.5s;
+}
+
+.list_element_title{
+	height: 50px;
+	margin: 0;
+	padding: 5px;
+}
+
+.list_element_title:hover{
+	background-color: lightgray;
+	cursor: pointer;
+
+}
+.building_list a{
+	display: block;
+}
+
+
+.building_list h4{
+	display: inline-block;
+}
+
+.building_list_element_sub_section{
+	height: 10px;
+	background-color: green;
+	transition: height 0.2s;
+}
+
+
+.building_list_element{
+	height: 50px;
+}
+
+.building_info_section{
+	background-color: white;
+	padding: 0.5%;
+}
+
+.three_column_left{
+	background-color: white;
+	width: 100%;
+	margin-bottom: 10px;
+	display: block;
+	/*border: solid 1px black;*/
+	text-align: center;
+}
+
+#building_image{
+	width: 80%;
+}
+
+.three_column_middle{
+	text-align: center;
+	width: 100%;
+	margin-bottom: 10px;
+	background-color: white;
+	display: block;
+	/*border: solid 1px red;*/
+}
+
+.three_column_right{
+	width: 100%;
+	display: block;
+}
+
+.table_title{
+	font-weight: 700;
+	font-size: 25px;
+	border-bottom: 1px solid black;
+	text-align: left;
+}
+
+#contact_info{
+	width: 80%;
+	margin: auto;
+}
+
+#general_info{
+	width: 80%;
+	margin: auto;
+}
+.info_table{
+	width: 100%;
+	padding: 10px;
+}
+
+.info_table td:first-child{
+	font-weight: 700;
+	text-align: left;
+}
+
+.info_table td:last-child{
+	text-align: right;
+}
+
+.capacity_table{
+	width: 100%;
+	padding: 10px;
+}
+
+.capacity_table td:first-child{
+	font-weight: 700;
+	text-align: center;
+}
+
+.capacity_table td:last-child{
+	text-align: center;
+}
+
+/*=======RESPONSIVE STYLING FOR ROOM PAGE=============*/

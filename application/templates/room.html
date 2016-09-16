@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <link rel=stylesheet type=text/css href="{{ url_for('static', filename='dashboard.css') }}"> -->
+	<link rel=stylesheet type=text/css media="(min-width: 640px)" href="{{ url_for('static', filename='dashboard.css') }}">
+	<link rel=stylesheet type=text/css media="(max-width: 640px)" href="{{ url_for('static', filename='dashboard_640.css') }}">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='chart_rendering.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='data_query.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='data_calculations.js') }}"></script>
+	
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{{ url_for('static', filename='images/thumbnail.png') }}">
+	<title>OpenDoorData</title>
+</head>
+<body>
+			<div id="full_screen_header">
+		<div id="wrapper">
+			<!--NAVBAR STUFF GOES HERE-->
+
+			<header id="large_screen_header">
+				<div class="wrapper">
+					<img id="header_image" src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+					<h3 id="header_title">Open Door Data</h3>
+				</div>
+			</header>
+			<nav>
+
+				<ul>
+					<div class="wrapper">
+						<li><a href="/">Home</a></li>
+						<li><a>Dashboard</a>
+							<ul>
+								<li><a href="/dashboard/general">General Information</a></li>
+								<li><a href="/building">Building Information</a></li>
+								<li><a href="/room">Room Information</a></li>
+								<li><a href="/module">Module Information</a></li>
+							</ul>
+						</li>
+						<li><a href="/api">API</a>
+						</li>
+						<li><a href="/survey">Survey</a></li>
+					</div>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- MOBILE NAVBAR -->
+	<div id="navbar">
+		<div id="navContent">
+			<div id="navbar_title">
+				<img src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+				<h4 id="product_name">UCD Occupancy Checker</h4>
+			</div>
+
+			<ul id="navList">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dashboard/general">General Information</a></li>
+				<li><a href="/building">Building Information</a></li>
+				<li><a href="/room">Room Information</a></li>
+				<li><a href="/module">Module Information</a></li>
+				<li><a href="/api">API</a></li>
+				<li><a href="/survey">Survey</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="mobile_header">
+		<div onclick="showNavBar()" id="navbar_symbol"><h1>≡</h1></div>
+		<h4 id="page_name">Room Information</h4>
+	</div>
+	<!--MAIN CONTENT PAGE GOES HERE-->
+	<div class="wrapper">
+		<div class="dashboard_display">
+			<div class="option_selector">
+				<form id="selector">
+					Select the Building:
+					<select>
+						<option value="scs">School of Computer Science</option>
+					</select>
+				</form>
+				<form id="selector">
+					Select the room:
+					<!-- TODO: use Jinja to get these option from the databse -->
+					<select id="room_select">
+						<option value="2">B002</option>
+						<option value="3">B003</option>
+						<option value="4">B004</option>
+					</select>
+				</form>
+				<button id="submit_button" onclick="getRoomInfo()">Get Info!</button>
+			</div>
+
+			<div class="page_title">
+				<h1 class="section_title">Room Information</h1>
+			</div>
+
+			<div id="room_information" class="full_column">
+				<div class="chart_title">
+					<h4>Daily Average Associated Devices</h4>
+				</div>
+				<div class="full_column_chart">
+					<canvas id="dailyAverageChart"></canvas>
+				</div>
+			</div>
+
+
+			<div class="three_column_left">
+				<div class="chart_title">
+					<h4>Frequency of Use</h4>
+				</div>
+				<div class="chartArea">
+					<canvas id="fou_chart"></canvas>
+				</div>
+				<div class="percentage_display">
+					<h1 id="general_fou_percent"></h1>
+				</div>
+			</div>
+
+			<div class="three_column_middle">
+				<div class="chart_title">
+					<h4>Occupancy Rating</h4>
+				</div>
+				<div class="chartArea">
+					<canvas id="occupancy_chart"></canvas>
+				</div>
+				<div class="percentage_display">
+					<h1 id="general_occupancy_percent"></h1>
+				</div>
+			</div>
+
+			<div class="three_column_right">
+				<div class="chart_title">
+					<h4>Utilisation Rating</h4>
+				</div>
+				<div class="chartArea">
+					<canvas id="utilisation_chart"></canvas>
+				</div>
+				<div class="percentage_display">
+					<h1 id="utilisation_percent"></h1>
+				</div>
+			</div>
+
+			<div class="page_title">
+				<h1 class="section_title">Historical Information</h1>
+			</div>
+			<div class="option_selector" id="date_selector">
+				<form class="date_picker">
+					Please select a date: 
+					<input onchange="displayDate()" id="datething" min="2015-11-03" max="2015-11-13"
+					type="date">
+				</form>
+			</div>
+
+			<div class="full_column">
+				<div class="chart_title">
+					<h4>5-Category Occupancy Stastics</h4>
+				</div>
+
+				<div class="full_column_chart">
+					<canvas id="predictedHourly-5-cat"></canvas>
+				</div>
+			</div>
+
+			<div class="full_column">
+				<div class="chart_title">
+					<h4>3-Category Occupancy Stastics</h4>
+				</div>
+
+				<div class="full_column_chart">
+					<canvas id="predictedHourly-3-cat"></canvas>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<script type="text/javascript">
+	window.onload = getRoomInfo;
+
+</script>
+</body>
+</html>
+

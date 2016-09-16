@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel=stylesheet type=text/css href="{{ url_for('static', filename='db_general.css') }}">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<title>OpenDoorData</title>
+	<link rel="icon" href="{{ url_for('static', filename='images/thumbnail.png') }}">
+</head>
+<body>
+				<div id="full_screen_header">
+		<div id="wrapper">
+			<!--NAVBAR STUFF GOES HERE-->
+
+			<header id="large_screen_header">
+				<div class="wrapper">
+					<img id="header_image" src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+					<h3 id="header_title">Open Door Data</h3>
+				</div>
+			</header>
+			<nav>
+
+				<ul>
+					<div class="wrapper">
+						<li><a href="/">Home</a></li>
+						<li><a>Dashboard</a>
+							<ul>
+								<li><a href="/dashboard/general">General Information</a></li>
+								<li><a href="/building">Building Information</a></li>
+								<li><a href="/room">Room Information</a></li>
+								<li><a href="/module">Module Information</a></li>
+							</ul>
+						</li>
+						<li><a href="/api">API</a>
+						</li>
+						<li><a href="/survey">Survey</a></li>
+					</div>
+				</ul>
+			</nav>
+		</div>
+	</div>
+    
+    <div id = "main_page">
+    
+	<div class="input_form">
+		<form action="">
+			<label for="location">Location</label>
+		  <select name="location" id="rooms">
+		  </select>
+			
+			<label for="week">Week</label>
+		  <select name="week" id = "weeks">
+		  </select>
+			
+			<label for="occupancy">Occupancy</label>
+		  <select name="occupancy">
+			<option value="all">All</option>
+			<option value=0.0>0%</option>
+			<option value=0.25>25%</option>
+			<option value=0.50>50%</option>
+			<option value=0.75>75%</option>
+			<option value=1.0>100%</option>
+		  </select>
+			<button id="submit_button">Get Info!</button>
+		</form>
+		
+	</div>
+	
+	<script type = "text/javascript">
+		var rooms = document.getElementById("rooms");
+		options = ""
+		{% for room in rooms %}
+		options +="<option value="+"'"+'{{ room.building }}'+","+'{{ room.room_num }}'+"'"+ ">"+'{{ room.building }}'+" - "+'{{ room.room_num }}'+"</option>";
+		{% endfor %}
+		rooms.innerHTML = options;
+		 
+		var weeks = document.getElementById("weeks");
+		options = ""
+		{% for week in weeks %}
+		options +="<option value="+"'"+'{{ week }}'+"'"+ ">"+'{{ week }}'+"</option>";
+		{% endfor %}
+		weeks.innerHTML = options;
+	</script>
+		
+	<h1 id = "content_area">Room Occupancy Calendar</h1>
+		
+	<div id="calendar">
+	</div>
+</div>
+	
+	
+<script>
+
+	function getJsonResult(get_url,week, occupancy){
+		try {
+			$.getJSON(get_url, function(jd){
+
+				data_entry = '<header id= "calendar_header"><p id = "week">Week of '+week+'</p></header><table><tr id="weekdays"><th id = "hour" style = "background-color: white;">Hour</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thur</th><th>Fri</th></tr>';
+
+				if(occupancy != "all"){
+					var occupancy_level = (parseFloat(occupancy)*100);
+				}
+				
+				for (i=0; i<8; i++){
+					if (i<4){
+						hour = i+9;
+					}
+					else{
+						hour = i-3;
+					}
+					if (hour == 12 || hour<9){
+						timeap = "pm";
+					}
+					else{
+						timeap = "am";
+					}
+					data_entry += '<tr><td id = "hour">'+hour+timeap+'</td>';
+					for (k = 0; k < 5; k++) {
+						var entry = ((jd[k][i]["occupancy_category_5"])*100);
+						if (isNaN(entry)){
+							entry = "No Data";
+						}
+						if (entry != "No Data"){
+							if (entry != occupancy_level && occupancy != "all"){
+								entry = "";
+							}
+						}
+						var color = "";
+						switch(entry){
+							case 0:
+								color = "empty";
+								break;
+							case 25:
+								color = "quarter";
+								break;
+							case 50:
+								color = "half";
+								break;
+							case 75:
+								color = "almost_full"
+								break;
+							case 100:
+								color = "full"
+								break;
+						}
+								
+						data_entry += '<td id = "'+color+'">'+entry+'</td>';
+							
+					}
+					data_entry += "</tr>";
+					}
+				data_entry+= "</table>";
+				document.getElementById("calendar").innerHTML= data_entry;
+				return data_entry;
+			});
+			}
+		
+		catch(err) {
+			alert(err.message);
+			}
+	}
+	
+	$(document).ready(function(){
+/*
+		by using "form" the data reloads whenever any selection changes
+*/
+    	$("form").click(function(event){
+			console.log("test");
+			console.log(event);
+			
+			
+			event.preventDefault();
+			var loc = $('select[name="location"]').val().split(',');
+			var room_num = loc[1].toString();
+			var week = $('select[name="week"]').val();
+			var occupancy = $('select[name="occupancy"]').val();
+
+			get_url = "/dashboard/general/"+room_num+"/"+week;
+			getJsonResult(get_url,week,occupancy);
+			
+    });
+});
+	</script>
+
+</body>
+</html>

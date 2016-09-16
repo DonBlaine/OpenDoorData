@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel=stylesheet type=text/css media="(min-width: 640px)" href="{{ url_for('static', filename='dashboard.css') }}">
+	<link rel=stylesheet type=text/css media="(max-width: 640px)" href="{{ url_for('static', filename='dashboard_640.css') }}">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.js"></script>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	
+	<script type="text/javascript" src="{{ url_for('static', filename='chart_rendering.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='map.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='data_query.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='building.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="{{ url_for('static', filename='images/thumbnail.png') }}">
+	<title>OpenDoorData</title>
+</head>
+<body>
+				<div id="full_screen_header">
+		<div id="wrapper">
+			<!--NAVBAR STUFF GOES HERE-->
+
+			<header id="large_screen_header">
+				<div class="wrapper">
+					<img id="header_image" src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+					<h3 id="header_title">Open Door Data</h3>
+				</div>
+			</header>
+			<nav>
+
+				<ul>
+					<div class="wrapper">
+						<li><a href="/">Home</a></li>
+						<li><a>Dashboard</a>
+							<ul>
+								<li><a href="/dashboard/general">General Information</a></li>
+								<li><a href="/building">Building Information</a></li>
+								<li><a href="/room">Room Information</a></li>
+								<li><a href="/module">Module Information</a></li>
+							</ul>
+						</li>
+						<li><a href="/api">API</a>
+						</li>
+						<li><a href="/survey">Survey</a></li>
+					</div>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- MOBILE NAVBAR -->
+	<div id="navbar">
+		<div id="navContent">
+			<div id="navbar_title">
+				<img src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+				<h4 id="product_name">UCD Occupancy Checker</h4>
+			</div>
+
+			<ul id="navList">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dashboard/general">General Information</a></li>
+				<li><a href="/building">Building Information</a></li>
+				<li><a href="/room">Room Information</a></li>
+				<li><a href="/module">Module Information</a></li>
+				<li><a href="/api">API</a></li>
+				<li><a href="/survey">Survey</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="mobile_header">
+		<div onclick="showNavBar()" id="navbar_symbol"><h1>≡</h1></div>
+		<h4 id="page_name">Room Information</h4>
+	</div>
+	<!--MAIN CONTENT PAGE GOES HERE-->
+
+	<div class="wrapper">
+		<div class="dashboard_display">
+			<div class="page_title">
+				<h1>Campus Map</h1>
+			</div>
+			<div class="option_selector">
+				<form  id="selector">Select a Building:
+					<select id="building_select">
+						<option value="scs">School of Computer Science</option>
+					</select>
+				</form>
+				<button id="submit_button" onclick="getBuildingInfo()">Get Info!</button>
+			</div>
+			<div class="map_section">
+				<div id="googleMap"></div>
+			</div>
+			
+
+			<div class="page_title">
+				<h1 class="section_title">Building information</h1>
+			</div>
+			<div class="building_info_section">
+				<div id="building_picture" class="three_column_left">
+					<img id="building_image">
+				</div>
+				<div  id="contact_info_div" class="three_column_middle">
+
+				</div>
+				<div id="capacity_info_div" class="three_column_right">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: "Open Sans";
+}
+
+html{
+    padding: 0;
+	height: auto;
+	min-height: 100%;
+	width: 100%;
+	
+}
+body{
+	padding: 0;
+	margin: 0;
+	min-height: 100%;
+	display: inline-block;
+	width: 100%;
+}
+#main_page{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+#main_page p{
+	font-size: 1.5vw;
+	padding: 1%;
+	text-align:center;
+}
+header{
+	height: 80px;
+	background-color: #222222;
+	width: 100%;
+}
+
+#header_image{
+	height: 60px;
+	margin-top: 10px;
+	margin-left: 10px;
+	display: inline;
+	vertical-align: middle;
+}
+
+#header_title{
+	font-weight: 300;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	color: white;
+	display: inline;
+	font-family: helvetica;
+}
+
+#full_screen_header{
+	display: none;
+}
+
+#mobile_header{
+	display: block;
+	width: 100%;
+	height: 50px;
+	margin-bottom: 5px;
+	text-align: center;
+	background-color: #222222;;
+	color: white;
+}
+
+#page_name{
+	position: relative;
+	transition: opacity 0.2s;
+	display: inline-block;
+	top: 10px;
+	overflow: hidden;
+}
+
+
+/*All CSS classes related to the header go here*/
+#navbar_title{
+	background-color: #222222;
+	height: 50px;
+	width: 100%;
+	z-index: 10;
+}
+
+#navbar_symbol{
+	z-index: 4;
+	position: absolute;
+	width: 20px;
+	margin-left: 10px;
+	transition: margin-left 0.2s;
+}
+
+#navbar_title img{
+	height: 30px;
+	margin-top:10px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	left: 5px;
+	margin-right: 10px;
+}
+
+#product_name{
+	font-size: 13px;
+	margin-top:10px;
+	opacity: 0;
+	transition: opacity 1s;
+	color: white;
+	vertical-align: middle;
+	display: inline-block;
+	font-family: Arial;
+}
+
+/*All CSS relating to the navigation bar*/
+
+#navbar{
+	position: fixed;
+	width: 0;
+	transition: width 0.2s;
+	overflow: hidden;
+    top: 0px;
+    left: 0px;
+	background-color: #0099cc;
+	height: 100%;
+	z-index: 10;
+}
+
+.navbar_section_title{
+	font-weight: normal;
+	font-size: 15px;
+}
+
+#navbar_title_main{
+	display: block;
+	width: 180px;
+	margin: auto;
+	border-bottom: 1px solid white;
+}
+
+#navContent{
+	color: white;
+}
+
+#navList{
+	font-size: 14px;
+	font-weight: 600;
+	list-style-type: none;
+}
+
+#navList li{
+}
+
+#navList li:hover{
+	background-color: #222222;
+	box-shadow: 5px 0 0 #0099cc inset;
+} 
+
+#navList a{
+	text-decoration: none;
+	color: white;
+	display: block;
+	position: relative;
+	padding: 10px;
+}
+
+
+nav{
+	width: 100%;
+}
+nav ul ul {
+	display: none;
+	z-index: 10;
+}
+
+nav ul li:hover > ul {
+	display: block;
+}
+
+nav ul {
+	width: 100%;
+	background: #0099cc; 
+	list-style: none;
+	position: relative;
+	display: inline-table;
+}
+
+nav ul li {
+	float: left;
+}
+
+nav ul li:hover {
+	background: #4b545f;
+
+}
+		
+nav ul li:hover a {
+	color: #fff;
+}
+	
+nav ul li a {
+	display: block;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+}
+
+nav ul ul {
+	background: #5f6975;
+	border-radius: 0px; 
+	padding: 0;
+	position: absolute; 
+	top: 100%;
+	width: auto;
+}
+
+nav ul ul li {
+	float: none; 
+	position: relative;
+	}
+
+nav ul ul li a {
+	padding: 10px;
+	color: #fff;
+	}
+
+nav ul ul li a:hover {
+	background: #4b545f;
+}
+.wrapper{
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#main_page{
+	margin-top: 2%;
+}
+#main_page p{
+	font-size: 1.6vw;
+	padding: 1%;
+	text-align:center;
+}
+.survey_form{
+	background-color: lightgrey;
+	padding: 2%;
+	width:70%;
+	margin:auto;
+	border-radius: 5px;
+	margin-bottom: 2%;
+}
+label,select,input{
+	width: 100%;
+	margin:auto;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 1%;
+	font-size: 16px; 
+	font-size: 1.6vw;
+}
+option, label{
+	font-size: 16px; 
+	font-size: 1.6vw;
+}
+input{
+	background-color: indianred;
+}
+input:hover {
+    background-color: skyblue;
+}

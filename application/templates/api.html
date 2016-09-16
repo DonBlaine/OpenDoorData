@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel=stylesheet type=text/css media="(min-width: 640px)" href="{{ url_for('static', filename='api.css') }}">
+	<link rel=stylesheet type=text/css media="(max-width: 640px)" href="{{ url_for('static', filename='api_640.css') }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="icon" href="{{ url_for('static', filename='images/thumbnail.png') }}">
+	<title>OpenDoorData</title>
+</head>
+<body>
+	<div id="full_screen_header">
+		<div id="wrapper">
+			<!--NAVBAR STUFF GOES HERE-->
+
+			<header id="large_screen_header">
+				<div class="wrapper">
+					<img id="header_image" src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+					<h3 id="header_title">Open Door Data</h3>
+				</div>
+			</header>
+			<nav>
+
+				<ul>
+					<div class="wrapper">
+						<li><a href="/">Home</a></li>
+						<li><a>Dashboard</a>
+							<ul>
+								<li><a href="/dashboard/general">General Information</a></li>
+								<li><a href="/building">Building Information</a></li>
+								<li><a href="/room">Room Information</a></li>
+								<li><a href="/module">Module Information</a></li>
+							</ul>
+						</li>
+						<li><a href="/api">API</a>
+						</li>
+						<li><a href="/survey">Survey</a></li>
+					</div>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- MOBILE NAVBAR -->
+	<div id="navbar">
+		<div id="navContent">
+			<div id="navbar_title">
+				<img src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+				<h4 id="product_name">UCD Occupancy Checker</h4>
+			</div>
+
+			<ul id="navList">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dashboard/general">General Information</a></li>
+				<li><a href="/dashboard/building">Building Information</a></li>
+				<li><a href="/dashboard/room">Room Information</a></li>
+				<li><a href="/dashboard/module">Module Information</a></li>
+				<li><a href="/api">API</a></li>
+				<li><a href="/survey">Survey</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="mobile_header">
+		<div onclick="showNavBar()" id="navbar_symbol"><h1>≡</h1></div>
+		<h4 id="page_name">API</h4>
+	</div>
+	
+	<div id = "main_page">
+		<h3>Open Door Data official API documentation</h3>
+		<p>Access current and past Open Door Data in an easy to call JSON format</p>
+		<p>Full details for accessing the data are listed in the sections below.</p>
+		
+		<div class = 'info_container'>
+			<h3>Current tables/table attributes available for access</h3>
+			<div class = 'table_container'>	
+				<table>
+					<tr>
+						<th>Table</th>
+						<th>Attribute Description</th>
+					</tr>
+					<tr>
+						<td>Room</td>
+						<td>Information on each building/room</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>id_field: Record id for each room.</li>
+								<li>room_num: Official room number.</li>
+								<li>room_cap: Room Occupancy capacity.</li>
+								<li>building: Offical building name.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>Module</td>
+						<td>Information on class modules</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>module_code: Class module code.</li>
+								<li>instructor: Instructor name.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>Wifi_log</td>
+						<td>Wifi log information for each room recorded every five minutes</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>id_field: Record id for each log.</li>
+								<li>room_id: Room number.</li>
+								<li>building: Building name.</li>
+								<li>event_time: Time in epoch format.</li>
+								<li>assoc_devices: Number of associated devices to wifi access point.</li>
+								<li>auth_devices: Number of authenticated devices to wifi access point.</li>
+								<li>time: Event_time in readable DATETIME format.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>Timetable</td>
+						<td>Timetable information for each room</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>id_field: Record id for each log.</li>
+								<li>room_id: Room number.</li>
+								<li>building: Building name.</li>
+								<li>mod_code: Class module code.</li>
+								<li>event_time: Time in epoch format.</li>
+								<li>time: Event_time in readable DATETIME format.</li>
+								<li>reg_stu: Number of registered students for module at that time.</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>Survey</td>
+						<td>Manually recorded occupancy data for each room each hour</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>id_field: Record id for each log.</li>
+								<li>room_id: Room number.</li>
+								<li>building: Building name.</li>
+								<li>event_time: Time in epoch format.</li>
+								<li>time: Event_time in readable DATETIME format.</li>
+								<li>reporter: Reporter who gathers the ground data.</li>
+								<li>occupancy: Room occupancy level between 0 - 1.0 rounded to nearest 25%.</li>
+							</ul>		
+						</td>
+					</tr>
+					<tr>
+						<td>Occupancy</td>
+						<td>Occupancy based on wifi log data. Unlike other tables this is a derived table and therefore can only be queried directly "api/occupancy" or queried specifying a specific room "api/occupancy/2".</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>event_day: day number for the log</li>
+								<li>event_year: year number for the log</li>
+								<li>event_hour: hour number for the log</li>
+								<li>auth_devices: number of authenticated devices</li>
+								<li>assoc_devices: number of associated devices</li>
+								<li>building: building name</li>
+								<li>room_id: room number for the log</li>
+								<li>capacity: room capacity</li>
+								<li>occupancy: manually reported data for occupancy level</li>
+								<li>occupancy_pred: occupancy number based on wifi log data</li>
+								<li>occupancy_category_5: occupancy level based on wifi log data divided into five categories</li>
+								<li>occupancy_category_3: occupancy level based on wifi log data divided into three categories</li>
+								<li>binary_occupancy: occupancy level based on wifi log data divided into two categories</li>
+							</ul>		
+						</td>
+					</tr>
+					
+
+				</table>
+			</div>
+		</div>
+		<div class = 'info_container'>
+			<h3>Accessing and querying the API</h3>
+			<div class = 'table_container'>	
+				<table>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>Access</td>
+						<td>The API can be accessed with the URL: "/api/table/query"</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Example: "/api/room" will return the full room table</td>
+					</tr>
+					<tr>
+						<td>Queries</td>
+						<td>All queries must begin with a question mark "?" to indicate a query</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>Example: "/api/module/?module_code=COMP10110" will query the module table for the entry with module code COMP10110</li>
+								<li>To query an item with a name that contains spaces, use the plus "+" operator instead of spaces</li>
+								<li>Example: "/api/room/?building=school+of+computer+science</li>
+							</ul>		
+						</td>
+					</tr>
+					<tr>
+						<td>Selecting</td>
+						<td>You can select specific records by inputting the number of the record after the table</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Example: "/api/room/2" will result in the second record of the query table</td>
+					</tr>
+					<tr>
+						<td>Joins</td>
+						<td>You can join two tables together using a double-underscore "__" notation</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Example: "/api/timetable/?room_id__room_num=3" will return the results in the timetable table that contain a room id connected to the room with number 3</td>
+					</tr>
+					<tr>
+						<td>Comparison</td>
+						<td>Comparison operators are supported using a double-underscore "__" notation</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>Example: "/api/room/?room__lt=2" will give you a list of rooms like room 2</li>
+								<li>Valid Comparison Operators include: ‘eq’, ‘lt’, ‘lte’, ‘gt’, ‘gte’, ‘ne’, ‘in’, ‘is’, ‘like’, ‘ilike’</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>Sorting</td>
+						<td>You can specify how your results are sorted with the keyword "ordering = table column"</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>
+							<ul>
+								<li>Example: "/api/room/?ordering=room_num" will sort your results by the room_num column</li>
+								<li>To sort in a descending fashion, place a hyphen "-" before the table column name</li>
+							</ul>
+						</td>
+					</tr>
+					<tr>
+						<td>Limiting</td>
+						<td>By default, only 20 results are returned per page however you can return less by using the "limit" keyword</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Example: "/api/room/?limit=2" will only return two results per page</td>
+					</tr>
+					<tr>
+						<td>Pagination</td>
+						<td>You can specifiy a specific page of the results by including the "page" keyword in the url request</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>Example: "/api/room/?limit=2&page=3" will return two results per page starting on the third page</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class = 'info_container'>
+			<h3>Example JSON request to "/api/room/?limit=3"</h3>
+			<div class = 'table_container'>
+				<img id="API example" src="{{ url_for('static', filename='images/api_example.png') }}">
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

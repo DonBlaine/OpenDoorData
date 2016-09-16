@@ -1,0 +1,230 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica;
+}
+
+html{
+    padding: 0;
+	height: auto;
+	min-height: 100%;
+	width: 100%;
+	
+}
+body{
+	padding: 0;
+	margin: 0;
+	min-height: 100%;
+	display: inline-block;
+	width: 100%;
+}
+header{
+	height: 80px;
+	background-color: #222222;
+	width: 100%;
+}
+
+#header_image{
+	height: 60px;
+	margin-top: 10px;
+	margin-left: 10px;
+	display: inline;
+	vertical-align: middle;
+}
+
+#header_title{
+	font-weight: 300;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	color: white;
+	display: inline;
+	font-family: helvetica;
+}
+nav{
+	width: 100%;
+}
+nav ul ul {
+	display: none;
+	z-index: 10;
+}
+
+nav ul li:hover > ul {
+	display: block;
+}
+
+nav ul {
+	width: 100%;
+	background: #0099cc; 
+	list-style: none;
+	position: relative;
+	display: inline-table;
+}
+
+nav ul li {
+	float: left;
+}
+
+nav ul li:hover {
+	background: #4b545f;
+
+}
+		
+nav ul li:hover a {
+	color: #fff;
+}
+	
+nav ul li a {
+	display: block;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+}
+
+nav ul ul {
+	background: #5f6975;
+	border-radius: 0px; 
+	padding: 0;
+	position: absolute; 
+	top: 100%;
+	width: auto;
+}
+
+nav ul ul li {
+	float: none; 
+	position: relative;
+	}
+
+nav ul ul li a {
+	padding: 10px;
+	color: #fff;
+	}
+
+nav ul ul li a:hover {
+	background: #4b545f;
+}
+.wrapper{
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#main_page{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+.input_form{
+	background-color: lightgrey;
+	width: 78%;
+	margin: auto;
+	height: auto;
+	margin-bottom: 2%;
+	margin-top: 1%;
+	padding: 1%;
+	border-radius: 5px;
+	text-align: center;
+}
+label, select, #submit_button{
+	text-align: center; 
+	font-size: 1.4vw;
+	display: inline-block;
+	margin: auto;
+}
+#submit_button, select{
+	margin-right:1%;
+}
+option{ 
+	font-size: 1.2vw;
+	box-shadow: none;
+	border: none;
+}
+#submit_button:hover {
+    background-color: none;
+}
+select{
+	box-shadow: none;
+	border: none;
+}
+#content_area{
+	border-bottom-style: solid;
+	width: 80%;
+	margin: auto;
+	border-bottom-width: 1px;
+	font-size: 2.2vw;
+}
+
+#calendar{
+	width: 80%;
+	height: 100%;
+	border: 1px solid black;
+	margin: auto;
+	margin-top: 1%;
+	margin-bottom: 2%;
+	border-radius: 5px;
+}
+
+#calendar_header{
+	background-color: #0099cc;
+	text-align: center;
+	font-size: 2vw;
+}
+#calendar table{
+	padding: 2%;
+	width: 96%;
+	height: 100%;
+	margin: auto;
+	margin-bottom: 2%;
+	margin-top: 2%;
+	border-collapse: separate;
+}
+th{
+	border-bottom: 1px solid black;
+	font-size: 1.4vw;
+}
+tr{
+	margin: auto;
+	width: 100%;
+}
+td{
+	width: 19%;
+	margin:auto;
+	border-radius: 5px;
+	text-align: center;
+	padding: 1%;
+	font-size: 1.4vw;
+}
+#hour{
+	width:5%;
+	background-color: gray;
+	border-radius: 5px;
+	font-size: 1.4vw;
+}
+#calendar p{
+	text-align: center;
+	font-size: 3vw;
+	font-style:italic;
+	padding: 2%;
+	color: white;	
+}
+
+
+
+#empty{
+	background-color: skyblue;
+}
+#quarter{
+	background-color: palegreen;
+}
+#half{
+	background-color: lightgoldenrodyellow
+}
+#almost_full{
+	background-color: orange;
+}
+#full{
+	background-color: indianred;	
+}
+
+
+
+

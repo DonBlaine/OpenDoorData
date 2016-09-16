@@ -1,0 +1,440 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica;
+}
+
+#mobile_header{
+	display: none;
+}
+
+header{
+	height: 80px;
+	background-color: #222222;
+	width: 100%;
+}
+
+#header_image{
+	height: 60px;
+	margin-top: 10px;
+	margin-left: 10px;
+	display: inline;
+	vertical-align: middle;
+}
+
+#header_title{
+	font-weight: 300;
+	position: relative;
+	top: 5px;
+	left: 10px;
+	color: white;
+	display: inline;
+	font-family: helvetica;
+}
+
+#navbar{
+	display: none;
+}
+
+/*This was done with the help of tutorial http://line25.com/tutorials/how-to-create-a-pure-css-dropdown-menu*/
+nav{
+	width: 100%;
+}
+nav ul ul {
+	display: none;
+	z-index: 10;
+}
+
+nav ul li:hover > ul {
+	display: block;
+}
+
+nav ul {
+	width: 100%;
+	background: #0099cc; 
+	list-style: none;
+	position: relative;
+	display: inline-table;
+}
+
+nav ul li {
+	float: left;
+}
+
+nav ul li:hover {
+	background: #4b545f;
+
+}
+		
+nav ul li:hover a {
+	color: #fff;
+}
+	
+nav ul li a {
+	display: block;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+}
+
+nav ul ul {
+	background: #5f6975;
+	border-radius: 0px; 
+	padding: 0;
+	position: absolute; 
+	top: 100%;
+	width: auto;
+}
+
+nav ul ul li {
+	float: none; 
+	position: relative;
+	}
+
+nav ul ul li a {
+	padding: 10px;
+	color: #fff;
+	}
+
+nav ul ul li a:hover {
+	background: #4b545f;
+}
+
+#left_content_section{
+	width: 100%;
+	background-color: white;
+	height: auto;
+}
+
+#hero_image_section{
+	padding: 10px;
+	text-align: center;
+}
+
+#hero_image_section img{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+.text_content{
+	padding: 10px;	
+}
+
+.wrapper{
+	max-width: 960px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: #999999;
+  background-color: #222222;
+}
+
+.footer h4{
+	font-weight: 300;
+	font-size: 13px;
+}
+
+
+/*Styling to contain the right hand side of the page*/
+#main_page{
+	height: 100%;
+	margin-left: 220px;
+    background-color: #f2f2f2;
+	}
+
+.dashboard_display{
+	margin: 0 5px 5px 5px;
+}
+
+/*==========================DBHOME.HTML=====================*/
+
+#home_main_page{
+	height: 100%;
+	margin-left: 220px;
+    background-color: white;
+}
+
+
+.home_display{
+	background-color: white;
+}
+
+
+/*=========================ROOM.HTML======================*/
+
+/*Stuff relating to submit form at the top*/
+
+.option_selector{
+	background-color: white;
+	border-radius: 3px;
+	height: 60px;
+	text-align: center;
+}
+
+#selector{
+	position: relative;
+	top: 8px;
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+
+#room_selector{
+	position: relative;
+	top: 8px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#submit_button{
+	position: relative;
+	top: 8px;
+}
+
+
+/*Chart div and chart styling*/
+.outer{
+	padding: 5px;
+	background-color: white;
+}
+.left_column{
+    background-color: white;
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+    height: 340px;
+    margin-bottom: 5px;
+}
+
+.right_column{
+    width: 50%;
+    margin-right: -5px;
+    display: inline-block;
+    height: 340px;
+
+    background-color: white;
+    margin-bottom: 5px;
+}
+
+
+.page_title{
+    background-color: white;
+    border-radius: 3px;
+    padding: 5px 5px 10px 5px;
+    text-align: left;
+}
+
+.page_title h1{
+	border-bottom: solid 1px black;
+}
+/*Chart Styling for room.html*/
+.chartArea{
+	padding-top: 10px;
+	background-color: white;
+	width: 100%;
+	height: 150px;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -5px;
+}
+
+.percentage_display{
+	display: block;
+	text-align: center;
+}
+
+
+.percentage_display h1{
+/*	/*width: 40%;*/
+}
+
+
+.frequency_of_use{
+	height: 300px;
+	width: 100%;
+}
+
+.full_column{
+	background-color: white;
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.full_column_chart{
+	height: 300px;
+	background-color: white;
+}
+
+.full_column_chart_tall{
+	height: 600px;
+	background-color: white;
+}
+
+.chart_title{
+	background-color: #0099CC;
+	
+	text-align: center;
+	color: white;
+	margin-bottom: 2px;
+	font-weight: 200;
+}
+
+.chart_title h4{
+	font-weight: 200;
+	padding: 5px;
+}
+#date_selector{
+}
+
+.date_picker{
+	position: relative;
+	top: 10px;
+}
+/*===========================BUILDING.HTML=========================*/
+
+#googleMap{
+	height: 500px;
+
+}
+
+.map_section{
+	z-index: 8;
+	margin-bottom: 5px;
+	padding: 10px;
+	background-color: white;
+}
+
+.building_list{
+	background-color: white;
+	list-style-type: none;
+}
+
+.building_list li{
+	padding: 5px;
+	transition: background-color 0.5s;
+}
+
+.list_element_title{
+	height: 50px;
+	margin: 0;
+	padding: 5px;
+}
+
+.list_element_title:hover{
+	background-color: lightgray;
+	cursor: pointer;
+
+}
+.building_list a{
+	display: block;
+}
+
+
+.building_list h4{
+	display: inline-block;
+}
+
+.building_list_element_sub_section{
+	height: 10px;
+	background-color: green;
+	transition: height 0.2s;
+}
+
+
+.building_list_element{
+	height: 50px;
+}
+
+.building_info_section{
+	background-color: white;
+	padding: 0.5%;
+}
+
+.three_column_left, .three_column_right, .three_column_middle{
+	height: 250px;
+}
+.three_column_left{
+	background-color: white;
+	width: 33%;
+	display: inline-block;
+	vertical-align: top;
+	/*border: solid 1px black;*/
+	margin-right: -5px;
+	text-align: center;
+}
+
+#building_image{
+	width: 80%;
+}
+
+.three_column_middle{
+	text-align: center;
+	width: 33%;
+	background-color: white;
+	display: inline-block;
+	vertical-align: top;
+	/*border: solid 1px red;*/
+	margin-right: -5px;
+}
+
+.three_column_right{
+	width: 33%;
+	display: inline-block;
+	vertical-align: top;
+	margin-right: -5px;
+}
+
+.table_title{
+	font-weight: 700;
+	border-bottom: 1px solid black;
+	text-align: left;
+}
+
+#contact_info{
+	width: 80%;
+	margin: auto;
+}
+
+#general_info{
+	width: 80%;
+	margin: auto;
+}
+.info_table{
+	width: 100%;
+	padding: 10px;
+}
+
+.info_table td:first-child{
+	font-weight: 700;
+	text-align: left;
+}
+
+.info_table td:last-child{
+	text-align: right;
+}
+
+.capacity_table{
+	width: 100%;
+	padding: 10px;
+}
+
+.capacity_table td:first-child{
+	font-weight: 700;
+	text-align: center;
+}
+
+.capacity_table td:last-child{
+	text-align: center;
+}
+
+/*=======RESPONSIVE STYLING FOR ROOM PAGE=============*/

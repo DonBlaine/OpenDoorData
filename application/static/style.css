@@ -1,0 +1,47 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+h1,h2,h3,h4{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+header{
+    background-color: #222222;
+    height: 100px;
+}
+
+#headerContents{
+    margin: auto;
+    width: 980px;
+    
+}
+
+#headerLogo{
+    height: 80px;
+    padding: 10px;
+    display: inline;
+    vertical-align: middle;
+}
+
+#headerTitle{
+    display: inline;
+    color: white;
+    font-family: Arial;
+}
+
+#formDiv{
+    text-align: center;
+}
+
+#roompic{
+    padding: 10px;
+    display: block;
+    height: 200px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}

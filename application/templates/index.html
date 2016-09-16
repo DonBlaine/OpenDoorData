@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel=stylesheet type=text/css media="(min-width: 640px)" href="{{ url_for('static', filename='dashboard.css') }}">
+	<link rel=stylesheet type=text/css media="(max-width: 640px)" href="{{ url_for('static', filename='dashboard_640.css') }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="{{ url_for('static', filename='main.js') }}"></script>
+	<link rel="icon" href="{{ url_for('static', filename='images/thumbnail.png') }}">
+	<title>OpenDoorData</title>
+</head>
+<body>
+			<div id="full_screen_header">
+		<div id="wrapper">
+			<!--NAVBAR STUFF GOES HERE-->
+
+			<header id="large_screen_header">
+				<div class="wrapper">
+					<img id="header_image" src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+					<h3 id="header_title">Open Door Data</h3>
+				</div>
+			</header>
+			<nav>
+
+				<ul>
+					<div class="wrapper">
+						<li><a href="/">Home</a></li>
+						<li><a>Dashboard</a>
+							<ul>
+								<li><a href="/dashboard/general">General Information</a></li>
+								<li><a href="/building">Building Information</a></li>
+								<li><a href="/room">Room Information</a></li>
+								<li><a href="/module">Module Information</a></li>
+							</ul>
+						</li>
+						<li><a href="/api">API</a>
+						</li>
+						<li><a href="/survey">Survey</a></li>
+					</div>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!-- MOBILE NAVBAR -->
+	<div id="navbar">
+		<div id="navContent">
+			<div id="navbar_title">
+				<img src="{{ url_for('static', filename='images/ucd-logo.png') }}">
+				<h4 id="product_name">UCD Occupancy Checker</h4>
+			</div>
+
+			<ul id="navList">
+				<li><a href="/">Home</a></li>
+				<li><a href="/dashboard/general">General Information</a></li>
+				<li><a href="/building">Building Information</a></li>
+				<li><a href="/room">Room Information</a></li>
+				<li><a href="/module">Module Information</a></li>
+				<li><a href="/api">API</a></li>
+				<li><a href="/survey">Survey</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+	<div id="mobile_header">
+		<div onclick="showNavBar()" id="navbar_symbol"><h1>≡</h1></div>
+		<h4 id="page_name">Home</h4>
+	</div>
+
+	<div class="wrapper">
+		<div id="left_content_section" style="margin-top: 1%;">
+			<div class="text_content">
+				<h1>Welcome</h1>
+				<br>
+				<p>This is the UCD Occupancy Detetction service. Here you can access occupancy and spatial utilization information for a number of rooms across the campus. Our service allows you to see information for <a href="#">buildings</a>, <a href="#">rooms</a> and even specific <a href="#">modules</a> throughout the semester.</p>
+				<br>
+				<h1>How Does it Work?</h1>
+				<br>
+				<p>This service utilises the Universitiy's WiFi network in order to determine occupancy information. The number of connected devices to a room's access point allows us to classify how many people are in the room at any given time.</p>
+				<br>
+				<h1>Who is this service for?</h1>
+				<br>
+				<p>This service is intended for Building Administrators who wish to see the utilisation of classroom space and Lecturers who would like to check the attendance trends for their lectures.</p>
+				<br>
+				<h1>How Can I Help?</h1>
+				<br>
+				<p>If you're a lecturer that uses this service and would like to contribute, feel free to download our app that allows you to submit attendance data for your classes. We use the information you give us to make our occupancy classification better and gives you better results. You can also submit results via the <a href="#">Survey Page</a>.</p>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
